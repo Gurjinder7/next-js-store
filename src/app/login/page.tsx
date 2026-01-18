@@ -6,12 +6,17 @@ interface FormState {
     message: string;
 }
 
-function submitForm(prevState, formData) {
+const initialState = {
+    success: false,
+    message: "",
+}
+function submitForm(prevState: FormState, formData: FormData) {
     const username = formData.get("username");
     const password = formData.get("password");
-
+    console.log(prevState)
     console.log(username, password);
 
+    // return null
     return {
         success: false,
         message: "Failed"
@@ -20,10 +25,7 @@ function submitForm(prevState, formData) {
 
 const Login = () => {
 
-    const [state, formAction, isPending] = useActionState(submitForm, {
-        success: true,
-        message:""
-    })
+    const [state, formAction, isPending] = useActionState(submitForm, initialState);
 
     console.log(isPending)
 
