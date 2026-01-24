@@ -5,7 +5,24 @@ import useAppStore from "../../../store";
 const DetailCard = (props: { game: IProduct | null; }) => {
     const {game} = props;
 
-    const {product, addProduct} = useAppStore()
+    const {products, addProduct} = useAppStore()
+
+    const addToCart = (product: IProduct | null) => {
+        console.log("addToCart")
+        if(product) {
+
+        const hasItem = products.filter((game: IProduct) => game.id === product.id)
+
+        if (hasItem?.length) {
+            alert("Already added to cart")
+            return
+        }
+
+        addProduct(product)
+        }
+
+
+    }
     return (
         <div className="flex gap-10 flex-wrap p-5 my-5 bg-white w-1/2">
 
@@ -19,7 +36,7 @@ const DetailCard = (props: { game: IProduct | null; }) => {
                 <h1 className="font-bold text-4xl py-3">${game?.price}</h1>
                 <div className="flex justify-end ">
                     <button className="bg-amber-700 text-white p-3 hover:bg-amber-600 hover:cursor-pointer"
-                    onClick={() => addProduct(game)}>Add to
+                    onClick={() => addToCart(game)}>Add to
                         Cart
                     </button>
 

@@ -11,13 +11,15 @@ export const ProductCard = ({product}:{product:IProduct}) => {
 
     const addToCart = () => {
         console.log("addToCart")
-        products.map((game: IProduct)=>{
-            if(product.id === game.id){
-                alert("Already added to cart")
-                return;
-            }
-        })
+        const hasItem = products.filter((game: IProduct) => game.id === product.id)
+
+        if (hasItem?.length) {
+            alert("Already added to cart")
+            return
+        }
+        
         addProduct(product)
+
     }
 
     console.log(products)

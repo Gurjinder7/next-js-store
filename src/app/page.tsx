@@ -48,7 +48,7 @@ export default async function Home() {
 
 
             {/*<button onClick={() => signUpNewUser()}>Send sign up</button>*/}
-            <Login call={signUpNewUser} />
+            {/*<Login call={signUpNewUser} />*/}
         </div>
   );
 }
