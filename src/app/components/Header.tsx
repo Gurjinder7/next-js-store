@@ -47,7 +47,7 @@ const Header = () => {
         <>
             <nav className="p-3 navbar navbar-expand-lg navbar-dark bg-dark h-[8vh] flex justify-between bg-cyan-900">
                 <div>
-                    <img width={30} height={30} src="/vercel.svg" alt="logo"/>
+                    <img width={30} height={30} src="/guinea.svg" alt="logo"/>
                 </div>
                 <div className="">
                     <Link href="/">Home</Link>
