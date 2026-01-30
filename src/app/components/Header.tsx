@@ -2,20 +2,45 @@
 import Link from "next/link";
 import useAppStore from "../../../store";
 import {createClient} from "@/utils/supabase/client";
+import {useRouter} from "next/navigation";
+
+// const router = useRouter();
+
 
 async function logOut() {
     const supabase = await createClient()
+    // const {clearData } = useAppStore()
 
         const { error } = await supabase.auth.signOut()
         console.log("Sign Out")
         console.log(error)
+        // clearData()
 
+    if(error) {
+        return new Error(error.message)
+    }
+    return true
 
 }
 
 const Header = () => {
 
-    const {products,user, toggleLoginDialog, loginDialog, authenticated} = useAppStore()
+    const {products,user, toggleLoginDialog, loginDialog, authenticated,clearData} = useAppStore()
+    const router = useRouter()
+
+    const clearOutUser = async () => {
+            const status = await logOut()
+
+            if (typeof(status) === "boolean") {
+                clearData()
+                router.push("/")
+
+            } else {
+                alert(status)
+            }
+
+    }
+
     console.log(user)
 
     return (
@@ -31,7 +56,7 @@ const Header = () => {
                 <div className="flex align-bottom justify-center pr-5 pt-3">
                     {user?.user?.user_metadata?.display_name && <p>{user?.user?.user_metadata?.display_name}</p>}
                     {authenticated ?
-                    <button className="px-5 cursor-pointer hover:bg-teal-600" onClick={() => logOut()}>Logout</button>
+                    <button className="px-5 cursor-pointer hover:bg-teal-600" onClick={() => clearOutUser()}>Logout</button>
                     : <button className="px-5 cursor-pointer hover:bg-teal-600" onClick={() => toggleLoginDialog(!loginDialog)}>Login</button>
                     }<span className="relative">
                         {products.length > 0 && <span className=" flex justify-center items-center absolute top-[-15px] right-[-25px] rounded-full p-2 bg-amber-300 text-black font-bold w-[30px] h-[30px]">{products.length}</span>}

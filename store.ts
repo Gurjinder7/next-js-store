@@ -32,6 +32,7 @@ const useAppStore = create<GameStoreState>()(
     )
 )
 
+// Store without persistence...
 // const useAppStore = create((set) => ({
 //     products:[],
 //     authenticated: false,
