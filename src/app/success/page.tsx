@@ -18,6 +18,7 @@ export default async function Success({searchParams}) {
         expand: ['line_items', 'payment_intent']
     })
 
+
     if (status === 'open') {
         return redirect("/cart");
     }

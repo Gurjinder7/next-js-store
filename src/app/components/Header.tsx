@@ -46,8 +46,8 @@ const Header = () => {
     return (
         <>
             <nav className="p-3 navbar navbar-expand-lg navbar-dark bg-dark h-[8vh] flex justify-between bg-violet-600 text-white">
-                <div className="flex items-center">
-                    <img width={30} height={30} src="/guinea.svg" alt="logo"/>
+                <div className="flex items-center" title="Guinea GameStore">
+                    <img width={30} height={30} src="/guinea.svg" alt="logo"/><span className="font-bold text-3xl">GG</span>
                 </div>
                 <div className="gap-5 flex text-white flex-nowrap">
                     <Link href="/" className="flex gap-2 justify-around items-center"><img className="w-1/2 h-1/2" src="/home.svg" alt="home"/> Home</Link>
